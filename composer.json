@@ -1,0 +1,25 @@
+{
+    "require": {
+        "ext-sqlite3": "*",
+        "doctrine/orm": "^2.6",
+        "fzaninotto/faker": "^1.7",
+        "monolog/monolog": "^1.23",
+        "slim/slim": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": ["src/"]
+        }
+    },
+    "scripts": {
+        "serve": [
+            "@composer install",
+            "php vendor/bin/doctrine orm:schema:update --force",
+            "php -S localhost:8000 -t public public/index.php"
+        ]
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    }
+}
