@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Slim\App;
 use Slim\Container;
 use Monolog\Logger;
 use App\Service\Doctrine;
@@ -10,7 +11,7 @@ use App\Service\Faker;
 
 class Bootstrap
 {
-    public static function getAppInstance()
+    public static function getAppInstance(): App
     {
         define('APP_ROOT', __DIR__.'/../');
 
