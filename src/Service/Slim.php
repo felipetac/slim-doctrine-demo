@@ -13,8 +13,10 @@ class Slim implements ServiceProviderInterface
     {
         $cnt[App::class] = function (Container $cnt): App {
             $app = new App($cnt);
-            $app->get('/user', '\App\Controller\User:list');
-            $app->post('/user', '\App\Controller\User:create');
+            $app->group('/user', function() {
+                $this->get('', '\App\Controller\User:list');
+                $this->post('', '\App\Controller\User:create');
+            });
             return $app;
         };
     }
