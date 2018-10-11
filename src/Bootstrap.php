@@ -8,6 +8,7 @@ use Monolog\Logger;
 use App\Service\Doctrine;
 use App\Service\Slim;
 use App\Service\Faker;
+use App\Service\User;
 
 class Bootstrap
 {
@@ -39,7 +40,8 @@ class Bootstrap
 
         $cnt->register(new Doctrine())
             ->register(new Slim())
-            ->register(new Faker());
+            ->register(new Faker())
+            ->register(new User());
 
         return $cnt[App::class];
     }
