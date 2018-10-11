@@ -3,14 +3,14 @@
 namespace App;
 
 use Slim\Container;
+use Monolog\Logger;
 use App\Service\Doctrine;
 use App\Service\Slim;
 use App\Service\Faker;
-use Monolog\Logger;
 
 class Bootstrap
 {
-    public static function instance()
+    public static function getAppInstance()
     {
         define('APP_ROOT', __DIR__.'/../');
 
@@ -18,7 +18,7 @@ class Bootstrap
             'settings' => [
                 'displayErrorDetails' => true,   
                 'logger' => [
-                    'name' => 'slim-app',
+                    'name' => 'slim-doctrine-demo',
                     'level' => Logger::DEBUG,
                     'path' => APP_ROOT . 'log/app.log',
                 ],
@@ -40,7 +40,6 @@ class Bootstrap
             ->register(new Slim())
             ->register(new Faker());
 
-        return $cnt;
+        return $cnt["app"];
     }
-
 }
