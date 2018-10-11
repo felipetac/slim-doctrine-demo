@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
+use Doctrine\ORM\EntityManager;
+use Faker\Generator;
 use App\Entity\User as UserEntity;
 use Slim\Http;
 
@@ -12,8 +14,8 @@ class User
 
    public function __construct(ContainerInterface $container) {
        $this->container = $container;
-       $this->faker = $this->container->get('faker');
-       $this->em = $this->container->get('em');
+       $this->faker = $this->container->get(Generator::class);
+       $this->em = $this->container->get(EntityManager::class);
    }
 
    public function list($request, $response, $args): Http\Response {

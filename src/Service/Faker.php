@@ -10,7 +10,7 @@ class Faker implements ServiceProviderInterface
 {
     public function register(Container $cnt)
     {
-        $cnt['faker'] = function (Container $cnt): Generator {
+        $cnt[Generator::class] = function (Container $cnt): Generator {
             return Factory::create();
         };
     }
