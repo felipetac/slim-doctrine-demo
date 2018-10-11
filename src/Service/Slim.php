@@ -5,7 +5,6 @@ namespace App\Service;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Slim\App;
-use App\Controller\User as UserController;
 
 class Slim implements ServiceProviderInterface
 {
