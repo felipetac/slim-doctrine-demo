@@ -2,7 +2,7 @@
 
 
 
-namespace App\Service;
+namespace App\Provider;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Cache\FilesystemCache;

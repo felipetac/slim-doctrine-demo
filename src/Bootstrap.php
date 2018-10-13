@@ -4,11 +4,10 @@ namespace App;
 
 use Slim\App;
 use Slim\Container;
-use Monolog\Logger;
-use App\Service\Doctrine;
-use App\Service\Slim;
-use App\Service\Faker;
-use App\Service\User;
+use App\Provider\Doctrine;
+use App\Provider\Slim;
+use App\Provider\Faker;
+use App\Provider\User;
 
 class Bootstrap
 {
@@ -16,28 +15,12 @@ class Bootstrap
     {
         define('APP_ROOT', __DIR__.'/../');
 
-        $config = [
-            'settings' => [
-                'displayErrorDetails' => true,   
-                'logger' => [
-                    'name' => 'slim-doctrine-demo',
-                    'level' => Logger::DEBUG,
-                    'path' => APP_ROOT . 'log/app.log',
-                ],
-                'doctrine' => [
-                    'dev_mode' => true,
-                    'cache_dir' => APP_ROOT . 'var/doctrine',
-                    'metadata_dirs' => [APP_ROOT . 'src/Entity'],
-                    'connection' => [
-                        'driver' => 'pdo_sqlite',
-                        'path' => APP_ROOT . 'var/app.db'
-                    ]
-                ]
-            ],
-        ];
+        if (!file_exists(APP_ROOT . '/settings.php')) {
+            copy(APP_ROOT . '/config/devel.php', APP_ROOT . '/settings.php');
+        }
         
-        $cnt = new Container($config);
-
+        $cnt = new Container(require APP_ROOT . '/settings.php');
+        
         $cnt->register(new Doctrine())
             ->register(new Slim())
             ->register(new Faker())

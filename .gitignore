@@ -1,2 +1,5 @@
 vendor
 .vscode
+settings.php
+var/coverage
+var/coverage.xml
