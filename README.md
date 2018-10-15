@@ -25,8 +25,8 @@ users from an SQLite database.
 ```
 Slim-Doctrine-Demo
 ├── config
-|   ├── devel.php           -- Settings for development
-|   └── test.php            -- Settings for running the tests
+│   ├── devel.php           -- Settings for development
+│   └── test.php            -- Settings for running the tests
 ├── public
 │   └── index.php           -- HTTP front controller
 ├── src
@@ -39,7 +39,7 @@ Slim-Doctrine-Demo
 │       ├── Fake.php        -- Faker Generator service definition
 │       ├── Slim.php        -- Slim service definitions
 │       └── User.php        -- User Routers service definitions
-|   └── Bootstrap.php       -- DI container setup (requires ./settings.php)
+│   └── Bootstrap.php       -- DI container setup (requires ./settings.php)
 ├── tests/                  -- Automated tests
 ├── var
 │   ├── coverage/           -- Test coverage results in HTML
