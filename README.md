@@ -48,7 +48,7 @@ Slim-Doctrine-Demo
 
 ├── composer.json
 ├── LICENSE
-├── phpunit.xml.dist
+├── phpunit.xml
 ├── README.md
 ├── settings.php            -- Settings currently in use (not committed to Git)
 ```
