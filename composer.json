@@ -1,6 +1,7 @@
 {
     "require": {
         "ext-sqlite3": "*",
+        "doctrine/migrations": "2.0.x-dev",
         "doctrine/orm": "^2.6",
         "fzaninotto/faker": "^1.7",
         "monolog/monolog": "^1.23",

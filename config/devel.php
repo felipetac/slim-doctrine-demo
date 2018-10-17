@@ -12,7 +12,7 @@ return [
         ],
         'doctrine' => [
             'dev_mode' => true,
-            'cache_dir' => APP_ROOT . '/var/doctrine',
+            'cache_dir' => APP_ROOT . '/var/doctrine/cache',
             'metadata_dirs' => [APP_ROOT . '/src/Entity'],
             'connection' => [
                 'driver' => 'pdo_sqlite',

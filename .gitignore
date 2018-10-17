@@ -3,3 +3,4 @@ vendor
 settings.php
 var/coverage
 var/coverage.xml
+var/doctrine/cache/*
