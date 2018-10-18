@@ -8,7 +8,7 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Slim\App;
 
-class User implements ServiceProviderInterface
+class Router implements ServiceProviderInterface
 {
     public function register(Container $cnt)
     { 

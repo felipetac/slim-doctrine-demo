@@ -18,6 +18,7 @@ return [
                 'driver' => 'pdo_sqlite',
                 'path' => APP_ROOT . '/var/app.db'
             ]
-        ]
+        ],
+        'cors' => '*',
     ]
 ];

@@ -9,7 +9,8 @@ use Slim\Container;
 use App\Provider\Doctrine;
 use App\Provider\Slim;
 use App\Provider\Faker;
-use App\Provider\User;
+use App\Provider\Router;
+use App\Provider\CORS;
 
 class Bootstrap
 {
@@ -25,8 +26,9 @@ class Bootstrap
         
         $cnt->register(new Doctrine())
             ->register(new Slim())
+            ->register(new CORS())
             ->register(new Faker())
-            ->register(new User());
+            ->register(new Router());
 
         return $cnt[App::class];
     }
