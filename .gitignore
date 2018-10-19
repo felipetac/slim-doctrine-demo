@@ -1,6 +1,7 @@
 vendor
 .vscode
 settings.php
+composer.lock
 var/coverage
 var/coverage.xml
 var/doctrine/cache/*

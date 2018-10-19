@@ -11,6 +11,7 @@ use App\Provider\Slim;
 use App\Provider\Faker;
 use App\Provider\Router;
 use App\Provider\CORS;
+use App\Provider\Fractal;
 
 class Bootstrap
 {
@@ -28,6 +29,7 @@ class Bootstrap
             ->register(new Slim())
             ->register(new CORS())
             ->register(new Faker())
+            ->register(new Fractal())
             ->register(new Router());
 
         return $cnt[App::class];

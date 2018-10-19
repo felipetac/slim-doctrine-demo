@@ -9,6 +9,9 @@ use Doctrine\ORM\EntityManager;
 use Faker\Generator;
 use App\Entity\User as UserEntity;
 use Slim\Http;
+use League\Fractal\Manager as Fractal;
+use League\Fractal\Resource\Collection;
+use App\Transformer\User as UserTransformer;
 
 class User
 {
@@ -18,12 +21,13 @@ class User
        $this->container = $container;
        $this->faker = $this->container->get(Generator::class);
        $this->em = $this->container->get(EntityManager::class);
+       $this->fractal = $this->container->get(Fractal::class);
    }
 
    public function list($request, $response, $args): Http\Response {
-        $users = $this->em->getRepository(UserEntity::class)
-                          ->findAll();
-        return $response->withJson($users, 200);
+        $users = $this->em->getRepository(UserEntity::class)->findAll();
+        $resource = new Collection($users, new UserTransformer);                       
+        return $response->withJson($this->fractal->createData($resource)->toArray(), 200);
    }
 
    public function create($request, $response, $args): Http\Response {

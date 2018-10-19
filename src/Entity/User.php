@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="users")
  */
-class User implements \JsonSerializable
+class User
 {
     /**
      * @var int
@@ -71,14 +71,5 @@ class User implements \JsonSerializable
     {
         return $this->registeredAt;
     }
-    
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->getId(),
-            'username' => $this->getUsername(),
-            'registered_at' => $this->getRegisteredAt()
-                ->format(\DateTime::ATOM)
-        ];
-    }
+
 }
