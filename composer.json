@@ -15,18 +15,23 @@
         "serve": [
             "@composer install",
             "cp config/devel.php settings.php",
-            "php vendor/bin/doctrine orm:schema:update --force",
+            "php vendor/bin/doctrine migrations:migrate",
             "php -S localhost:8000 -t public public/index.php"
         ],
         "test": [
             "@composer install",
             "cp config/test.php settings.php",
             "php vendor/bin/phpunit"
+        ],
+        "reset-database": [
+            "php vendor/bin/doctrine orm:schema-tool:drop --full-database --force",
+            "php vendor/bin/doctrine orm:schema-tool:create"
         ]
     },
     "config": {
         "process-timeout": 0,
-        "sort-packages": true
+        "sort-packages": true,
+        "php": "7.2"
     },
     "autoload": {
         "psr-4": {

@@ -31,10 +31,10 @@ class CORS implements ServiceProviderInterface
             return $next($request, $response);
         });
 
-        $cnt[App::class]->add(function ($req, $res, $next) {
-            $response = $next($req, $res);
+        $cnt[App::class]->add(function (Request $request, Response $response, callable $next) {
+            $response = $next($request, $response);
             return $response
-                ->withHeader('Access-Control-Allow-Origin', $cnt['settings']['cors'])
+                ->withHeader('Access-Control-Allow-Origin', $this->get('settings')['cors'])
                 ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
                 ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         });
