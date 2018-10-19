@@ -11,6 +11,7 @@ use App\Entity\User as UserEntity;
 use Slim\Http;
 use League\Fractal\Manager as Fractal;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use App\Transformer\User as UserTransformer;
 
 class User
@@ -18,10 +19,10 @@ class User
    protected $container;
 
    public function __construct(ContainerInterface $container) {
-       $this->container = $container;
-       $this->faker = $this->container->get(Generator::class);
-       $this->em = $this->container->get(EntityManager::class);
-       $this->fractal = $this->container->get(Fractal::class);
+        $this->container = $container;
+        $this->faker = $this->container->get(Generator::class);
+        $this->em = $this->container->get(EntityManager::class);
+        $this->fractal = $this->container->get(Fractal::class);
    }
 
    public function list($request, $response, $args): Http\Response {
@@ -34,6 +35,7 @@ class User
         $newRandomUser = new UserEntity($this->faker->name, $this->faker->password);
         $this->em->persist($newRandomUser);
         $this->em->flush();
-        return $response->withJson($newRandomUser, 201);
+        $resource = new Item($newRandomUser, new UserTransformer);
+        return $response->withJson($this->fractal->createData($resource)->toArray(), 201);
    }
 }
