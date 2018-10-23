@@ -22,7 +22,8 @@
         "test": [
             "@composer install",
             "cp config/test.php settings.php",
-            "php vendor/bin/phpunit"
+            "php vendor/bin/phpunit",
+            "rm -rf var/test.db"
         ],
         "reset-database": [
             "php vendor/bin/doctrine orm:schema-tool:drop --full-database --force",

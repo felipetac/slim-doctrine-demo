@@ -5,3 +5,4 @@ composer.lock
 var/coverage
 var/coverage.xml
 var/doctrine/cache/*
+var/test.db

@@ -13,10 +13,11 @@ use Symfony\Component\Console\Helper\QuestionHelper;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\DBAL\Tools\Console as DBALConsole;
+use App\Service\Doctrine as DoctrineService;
 
 $cnt = App\Bootstrap::getAppInstance()->getContainer();
 
-$connection = $cnt[EntityManager::class]->getConnection();
+$connection = $cnt[DoctrineService::class]->getEntityManager()->getConnection();
 
 $configuration = new Configuration($connection);
 $configuration->setName('App Migrations');
@@ -31,7 +32,7 @@ $configuration->setAllOrNothing(true);
 $helperSet = new HelperSet();
 $helperSet->set(new QuestionHelper(), 'question');
 $helperSet->set(new ConnectionHelper($connection), 'db');
-$helperSet->set(new EntityManagerHelper($cnt[EntityManager::class]), 'em');
+$helperSet->set(new EntityManagerHelper($cnt[DoctrineService::class]->getEntityManager()), 'em');
 $helperSet->set(new ConfigurationHelper($connection, $configuration));
 
 

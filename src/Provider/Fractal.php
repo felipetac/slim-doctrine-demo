@@ -13,7 +13,7 @@ class Fractal implements ServiceProviderInterface
 {
     public function register(Container $cnt)
     {
-        $cnt[Manager::class] = function (Container $cnt): Manager {
+        $cnt[Manager::class] = function ($cnt): Manager {
             return new Manager();
         };
     }

@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Slim\App;
 use Slim\Http;
+use App\Service\Doctrine as DoctrineService;
 
 class EndToEndTest extends TestCase
 {
@@ -31,7 +32,7 @@ class EndToEndTest extends TestCase
     {
         self::$app = $GLOBALS['cnt'][App::class];
         /** @var EntityManager $em */
-        $em = self::$app->getContainer()[EntityManager::class];
+        $em = self::$app->getContainer()[DoctrineService::class]->getEntityManager();
         self::$schema = $em->getMetadataFactory()->getAllMetadata();
         self::$tool = new SchemaTool($em);
     }
@@ -67,15 +68,15 @@ class EndToEndTest extends TestCase
 
     public function testSeveralApiCalls(): void
     {
-        $users = json_decode((string) $this->testGettingAListOfUsersWithTheGetEndpoint()->getBody());
+        $users = json_decode((string) $this->testGettingAListOfUsersWithTheGetEndpoint()->getBody())->data;
         self::assertCount(0, $users);
         $this->testCreatingAUserWithThePostEndpoint();
         $this->testCreatingAUserWithThePostEndpoint();
         $this->testCreatingAUserWithThePostEndpoint();
-        $users = json_decode((string) $this->testGettingAListOfUsersWithTheGetEndpoint()->getBody());
+        $users = json_decode((string) $this->testGettingAListOfUsersWithTheGetEndpoint()->getBody())->data;
         self::assertCount(3, $users);
         $this->testCreatingAUserWithThePostEndpoint();
-        $users = json_decode((string) $this->testGettingAListOfUsersWithTheGetEndpoint()->getBody());
+        $users = json_decode((string) $this->testGettingAListOfUsersWithTheGetEndpoint()->getBody())->data;
         self::assertCount(4, $users);
     }
     

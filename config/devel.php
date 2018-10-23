@@ -17,6 +17,9 @@ return [
             'connection' => [
                 'driver' => 'pdo_sqlite',
                 'path' => APP_ROOT . '/var/app.db'
+            ],
+            'pagination' => [
+                'limit' => 100
             ]
         ],
         'cors' => '*',

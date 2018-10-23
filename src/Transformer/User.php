@@ -2,9 +2,9 @@
 namespace App\Transformer;
 
 use App\Entity\User as UserEntity;
-use League\Fractal;
+use League\Fractal\TransformerAbstract;
 
-class User extends Fractal\TransformerAbstract
+class User extends TransformerAbstract
 {
 	public function transform(UserEntity $user)
 	{

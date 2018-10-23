@@ -12,7 +12,7 @@ class Slim implements ServiceProviderInterface
 {
     public function register(Container $cnt)
     {
-        $cnt[App::class] = function (Container $cnt): App {
+        $cnt[App::class] = function ($cnt): App {
             $app = new App($cnt);
             return $app;
         };

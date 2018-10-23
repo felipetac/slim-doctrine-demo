@@ -16,7 +16,10 @@ return [
             'metadata_dirs' => [APP_ROOT . '/src/Entity'],
             'connection' => [
                 'driver' => 'pdo_sqlite',
-                'memory' => true
+                'path' => APP_ROOT . '/var/test.db'
+            ],
+            'pagination' => [
+                'limit' => 100
             ]
         ],
         'cors' => '*',
